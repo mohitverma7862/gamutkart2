@@ -1,5 +1,7 @@
 pipeline {
-    agent any
+	agent {
+		label 'cloud_agent'
+	}
 
 //	tools {
 //		jdk 'jdk8'
