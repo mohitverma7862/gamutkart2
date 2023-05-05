@@ -33,7 +33,6 @@ pipeline {
 
         stage('Deployment') {
             steps {
-		sh 'apt install sshpass -y'
                 sh 'sshpass -p "tomcat" scp target/gamutgurus.war tomcat@172.17.0.2:/home/tomcat/apache-tomcat-8.5.87/webapps'
                 sh 'sshpass -p "tomcat" ssh tomcat@172.17.0.2 "/home/tomcat/apache-tomcat-8.5.87/bin/shutdown.sh"'
 		sh 'sshpass -p "tomcat" ssh tomcat@172.17.0.2 "/home/tomcat/apache-tomcat-8.5.87/bin/startup.sh"'
