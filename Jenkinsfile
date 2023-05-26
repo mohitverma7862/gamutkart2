@@ -28,6 +28,11 @@ pipeline {
                 junit 'target/**/*.xml'
             }
         }
+	    stage('Sonar Analysis') {
+		    steps {
+			    sh 'mvn sonar:sonar'
+		    }
+	    }
 
         stage('Deployment') {
             steps {
