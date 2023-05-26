@@ -27,14 +27,16 @@ pipeline {
                 sh 'mvn surefire:test'
                 junit 'target/**/*.xml'
             }
-        }
-        stage('SonarQube Analysis') {
-         def mvn = tool 'Default Maven';
-         withSonarQubeEnv() {
-                sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=Pipe -Dsonar.projectName='Pipe'"
-	 }
 	}
-
+	    stage('Sonar Analysis') {
+		    def mvn = tool 'Default Maven';
+		    withSonarQubeEnv()
+		    steps {
+			    sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=Pipe -Dsonar.projectName='Pipe'"
+		    }
+	    }
+			    
+ 
 
         stage('Deployment') {
             steps {
