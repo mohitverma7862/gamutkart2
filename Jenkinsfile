@@ -28,14 +28,11 @@ pipeline {
                 junit 'target/**/*.xml'
             }
 	}
-	    stage('Sonar Analysis') {
+	    stage('Sonar') {
 		    steps {
-			    sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=Pipe -Dsonar.projectName='Pipe'"
+			    sh 'mvn sonar:sonar'
 		    }
 	    }
-			    
- 
-
         stage('Deployment') {
             steps {
                 sh 'sshpass -p "tomcat" scp target/gamutgurus.war tomcat@172.17.0.2:/home/tomcat/apache-tomcat-8.5.87/webapps'
