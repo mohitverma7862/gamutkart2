@@ -28,11 +28,13 @@ pipeline {
                 junit 'target/**/*.xml'
             }
         }
-	    stage('Sonar Analysis') {
-		    steps {
-			    sh 'mvn sonar:sonar'
-		    }
-	    }
+  stage('SonarQube Analysis') {
+    def mvn = tool 'Default Maven';
+    withSonarQubeEnv() {
+      sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=Pipe -Dsonar.projectName='Pipe'"
+    }
+  }
+
 
         stage('Deployment') {
             steps {
