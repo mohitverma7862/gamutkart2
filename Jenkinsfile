@@ -29,8 +29,6 @@ pipeline {
             }
 	}
 	    stage('Sonar Analysis') {
-		    def mvn = tool 'Default Maven';
-		    withSonarQubeEnv()
 		    steps {
 			    sh "${mvn}/bin/mvn clean verify sonar:sonar -Dsonar.projectKey=Pipe -Dsonar.projectName='Pipe'"
 		    }
