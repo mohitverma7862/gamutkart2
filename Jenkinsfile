@@ -1,13 +1,6 @@
 pipeline {
 	agent any
-
-//	tools {
-//		jdk 'jdk8'
-//	}
-//	environment {
-//		M2_INSTALL = "/usr/bin/mvn"
-//	}
-
+	
     stages {
         stage('Clone-Repo') {
 	    steps {
