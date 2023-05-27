@@ -30,7 +30,7 @@ pipeline {
 	}
 	    stage('Sonar') {
 		    steps {
-			    sh 'mvn sonar:sonar'
+			    sh "mvn sonar:sonar -Dsonar.host.url=http://http://172.17.0.2:9000 -Dsonar.login=$SONAR"
 		    }
 	    }
         stage('Deployment') {
